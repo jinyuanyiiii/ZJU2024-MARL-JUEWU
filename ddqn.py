@@ -104,7 +104,7 @@ if __name__ == "__main__":
                 Q(s,a) (old_val)
                 '''
                 with torch.no_grad():
-                    target_max = target_network(buffer_obs).gather(1,q_network(buffer_obs).argmax(dim=1,keepdim=True))
+                    target_max = target_network(buffer_obs).gather(1,q_network(next_buffer_obs).argmax(dim=1,keepdim=True))
                     td_target = rew + gamma * target_max * cont
                 old_val = q_network(buffer_obs).gather(1,act)
 
